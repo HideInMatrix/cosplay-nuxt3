@@ -7,15 +7,15 @@
 </template>
 
 <script setup lang="ts">
-const layout = "custom"
+const layout = "custom";
 </script>
 
 <style lang="scss">
-@import url('~/assets/css/base.css');
+@import url("~/public/css/base.css");
 </style>
 
 <style lang="scss" scoped>
-.app-wrapper{
+.app-wrapper {
   height: 100vh;
   width: 100vw;
 }

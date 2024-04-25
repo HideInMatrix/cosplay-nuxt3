@@ -2,14 +2,14 @@
     <div class="app-layout">
         <header class="app-header">THIS IS HEADER</header>
         <div class="main-wrapper">
-            <div class="left-ads">
+            <div class="left-page">
                 left ads
             </div>
             <div class="main-body">
                 <slot />
 
             </div>
-            <div class="right-ads">
+            <div class="right-page">
                 right ads
             </div>
         </div>

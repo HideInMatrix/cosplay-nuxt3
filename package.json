@@ -10,6 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@ant-design-vue/nuxt": "^1.4.1",
+    "ant-design-vue": "4.x",
+    "fs-extra": "^11.2.0",
     "nuxt": "^3.11.2",
     "sass": "^1.75.0",
     "vue": "^3.4.21",

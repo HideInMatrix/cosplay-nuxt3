@@ -1,6 +1,4 @@
-<template>
-  <div class="images"></div>
-</template>
+<template>cosplay</template>
 
 <script setup lang="ts"></script>
 <style scoped lang="scss"></style>

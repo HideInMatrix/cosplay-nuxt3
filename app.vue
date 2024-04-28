@@ -1,14 +1,12 @@
 <template>
   <div class="app-wrapper">
-    <NuxtLayout :name="layout">
+    <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
   </div>
 </template>
 
-<script setup lang="ts">
-const layout = "custom";
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
 @import url("~/public/css/base.css");

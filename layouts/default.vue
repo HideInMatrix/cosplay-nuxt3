@@ -13,10 +13,6 @@
 
 <script setup lang="ts">
 import TopHeader from "~/components/TopHeader.vue";
-definePageMeta({
-  title: "cosplay micromatrix",
-  layout: "custom",
-});
 </script>
 <style scoped lang="scss">
 .app-layout {

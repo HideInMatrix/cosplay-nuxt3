@@ -8,11 +8,11 @@
 const route = useRoute();
 
 const links = [
-  {
-    label: "Home",
-    icon: "i-flat-color-icons-home",
-    to: "/",
-  },
+  // {
+  //   label: "Home",
+  //   icon: "i-flat-color-icons-home",
+  //   to: "/",
+  // },
   {
     label: "Cosplay",
     icon: "i-flat-color-icons-camera",

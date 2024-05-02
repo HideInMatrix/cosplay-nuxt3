@@ -1,8 +1,8 @@
 <template>
-  <div class="images">{{ data }}</div>
+  <div class="images"></div>
 </template>
 
 <script setup lang="ts">
-const { data } = await useFetch("/api/test");
+// await navigateTo("/cosplay");
 </script>
 <style scoped lang="scss"></style>

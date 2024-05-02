@@ -43,7 +43,6 @@ const extractImageSources = (markdownText: string) => {
   while ((match = regex.exec(markdownText)) !== null) {
     images.value.push(match[1]);
   }
-  console.log(images.value);
 };
 
 const fetchImages = async () => {

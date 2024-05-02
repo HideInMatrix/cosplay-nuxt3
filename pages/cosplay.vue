@@ -18,7 +18,6 @@
             'transition-all',
             'hover:scale-105',
             'aspect-[3/4]',
-            item.onload ? '' : 'skeleton-image',
           ]"
           :src="item.cover"
           loading="lazy"
@@ -119,39 +118,4 @@ const toView = (id: number) => {
   router.push(`/cosplays/${id}`);
 };
 </script>
-<style scoped lang="scss">
-.skeleton-image {
-  background-color: #ddd; // 灰色背景
-  width: 100%; // 根据需要设置宽度
-  height: 100%; // 为0意味着使用padding来设定高度
-  padding-top: 75%; // 通过padding-top的百分比来设定高宽比，比如4:3比例就是 (3 / 4 * 100)%
-  position: relative;
-  overflow: hidden;
-  border-radius: 0.25rem; // 圆角的大小
-}
-
-.skeleton-image::after {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 0;
-  transform: scale(1.02);
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-</style>
+<style scoped lang="scss"></style>

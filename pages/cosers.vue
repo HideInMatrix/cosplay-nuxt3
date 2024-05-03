@@ -18,8 +18,9 @@
           @click="cosersName = ''" />
       </template>
     </UInput>
-
-    <ul class="grid grid-cols-2 lg:grid-cols-4 gap-8 gap-y-5 py-6 mt-4">
+    <USkeleton class="flex-auto" v-show="coserList.length == 0" />
+    <ul
+      class="flex-auto grid grid-cols-2 lg:grid-cols-4 gap-8 gap-y-5 py-6 mt-4">
       <li
         class="flex items-center transition-all hover:bg-accent p-3 cursor-pointer"
         v-for="item in coserList"
@@ -37,7 +38,6 @@
     <UPagination
       class="py-2"
       size="md"
-      :max="5"
       :page-count="count"
       :total="total"
       v-model="page" />
@@ -50,7 +50,7 @@ import type { Tag } from "~/types/tag";
 let cosersName = ref("");
 let page = ref(1);
 let count = ref(20);
-let total = ref(0);
+let total = ref(30);
 let coserList = ref<Tag[]>([]);
 // 定义一个获取Coser数据的函数
 const fetchCosers = async (shouldResetPage = false) => {
@@ -71,19 +71,15 @@ const fetchCosers = async (shouldResetPage = false) => {
   }
 
   // 发起 API 请求
-  const { data: resp } = await useFetch(`/api/cosers/tags`, {
+  const { data, total: resultCount } = await $fetch(`/api/cosers/tags`, {
     method: "get",
     params: params,
   });
 
   // 处理响应数据，这里显式检查 undefined 而不是仅根据 truthy 评估
-  if (
-    resp.value &&
-    resp.value.data !== undefined &&
-    resp.value.total !== undefined
-  ) {
-    coserList.value = resp.value.data!;
-    total.value = resp.value.total!;
+  if (data !== undefined && total !== undefined) {
+    coserList.value = data!;
+    total.value = resultCount!;
   } else {
     // 如果需要，可以在这里处理错误或者设置 coserList 和 total 为默认值
     coserList.value = []; // 可设置为默认值
@@ -101,14 +97,14 @@ watch(cosersName, () => {
 });
 
 // 监听页码和数量的变化
-watch(
-  [page, count],
-  () => {
-    // Fetch the data without resetting the page
-    fetchCosers();
-  },
-  { immediate: true }
-);
+watch([page, count], () => {
+  // Fetch the data without resetting the page
+  fetchCosers();
+});
+
+onBeforeMount(() => {
+  fetchCosers();
+});
 </script>
 <style scoped lang="scss"></style>
 ~/types/tag

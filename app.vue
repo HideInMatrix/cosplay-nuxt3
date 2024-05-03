@@ -1,12 +1,22 @@
 <template>
   <div class="app-wrapper">
     <NuxtLayout>
-      <NuxtPage />
+      <NuxtPage keepalive />
     </NuxtLayout>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+definePageMeta({
+  key: (route) => route.fullPath,
+  transition: {
+    name: "page",
+  },
+  keepalive: {
+    exclude: ["cosplay", "cosers", "cosplays/[id]"], // 需要缓存的页面
+  },
+});
+</script>
 
 <style lang="scss">
 @import url("~/public/css/base.css");

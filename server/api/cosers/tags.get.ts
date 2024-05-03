@@ -10,11 +10,11 @@ export default defineEventHandler(
       count: number;
       name: string;
     };
-    // 如果query.name存在，则添加模糊搜索条件
+    // 如果query.name存在，则添i模糊搜索条件
     let nameFilter = {};
     if (pageQuery.name) {
       nameFilter = {
-        name: { like: `%${pageQuery.name}%` },
+        name: { ilike: `%${pageQuery.name}%` },
       };
     }
 

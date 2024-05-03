@@ -1,15 +1,15 @@
 <template>
   <div class="flex justify-center items-center flex-col h-full px-10">
-    <USkeleton
-      class="flex-auto"
-      v-show="cosplays.length == 0"
-      :ui="{ rounded: 'rounded-full' }" />
+    <USkeleton class="flex-auto" v-show="cosplays.length == 0" />
     <ul class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4 py-3">
       <li
         class="space-y-3 relative rounded-md"
         v-for="(item, index) in cosplays"
         @click="toView(item.id)"
         :key="index">
+        <USkeleton
+          class="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4]"
+          v-if="!item.onload" />
         <NuxtImg
           :class="[
             'h-auto',
@@ -23,10 +23,7 @@
           loading="lazy"
           @load="
             () => {
-              const cosplayItem = cosplays.find((c) => c.id === item.id);
-              if (cosplayItem) {
-                cosplayItem.onload = true;
-              }
+              item.onload = true;
             }
           "
           alt="" />
@@ -34,9 +31,6 @@
           <h3 class="font-medium leading-none truncate pr-9">
             {{ item.title }}
           </h3>
-          <!-- <p class="text-xs text-muted-foreground truncate">
-            {{ item.tag_id }}
-          </p> -->
         </div>
         <div class="flex items-center h-8">
           <div
@@ -52,7 +46,6 @@
     <UPagination
       class="py-2"
       size="md"
-      :max="5"
       :page-count="count"
       :total="total"
       v-model="page" />
@@ -64,7 +57,7 @@ import type { Cosplay } from "~/types/posts";
 
 let page = ref(1);
 let count = ref(20);
-let total = ref(0);
+let total = ref(30);
 
 let cosplays = ref<Cosplay[]>([]);
 
@@ -82,22 +75,18 @@ const fetchCoseplays = async (shouldResetPage = false) => {
   };
 
   // 发起 API 请求
-  const { data: resp } = await useFetch(`/api/cosplays/list`, {
+  const { data, total: resultTotal } = await $fetch(`/api/cosplays/list`, {
     method: "get",
     params: params,
   });
 
   // 处理响应数据，这里显式检查 undefined 而不是仅根据 truthy 评估
-  if (
-    resp.value &&
-    resp.value.data !== undefined &&
-    resp.value.total !== undefined
-  ) {
-    cosplays.value = resp.value.data!.map((item) => {
+  if (data !== undefined && total !== undefined) {
+    cosplays.value = data!.map((item) => {
       item.onload = false;
       return item;
     });
-    total.value = resp.value.total!;
+    total.value = resultTotal!;
   } else {
     // 如果需要，可以在这里处理错误或者设置 coserList 和 total 为默认值
     cosplays.value = []; // 可设置为默认值
@@ -105,13 +94,12 @@ const fetchCoseplays = async (shouldResetPage = false) => {
   }
 };
 
-watch(
-  [page, count],
-  () => {
-    fetchCoseplays();
-  },
-  { immediate: true }
-);
+watch([page, count], () => {
+  fetchCoseplays();
+});
+onBeforeMount(() => {
+  fetchCoseplays();
+});
 const router = useRouter();
 
 const toView = (id: number) => {

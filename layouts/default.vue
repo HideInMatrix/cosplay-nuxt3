@@ -2,11 +2,15 @@
   <div class="app-layout">
     <TopHeader></TopHeader>
     <div class="main-wrapper">
-      <div class="left-page md:w-40 xl:w-54 bg-white shrink-0">广告占位</div>
+      <div class="left-page md:w-40 xl:w-54 bg-white shrink-0 max-lg:hidden">
+        广告占位
+      </div>
       <div class="main-body">
         <slot />
       </div>
-      <div class="right-page md:w-40 xl:w-54 bg-white shrink-0">广告占位</div>
+      <div class="right-page md:w-40 xl:w-54 bg-white shrink-0 max-lg:hidden">
+        广告占位
+      </div>
     </div>
   </div>
 </template>

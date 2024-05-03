@@ -1,5 +1,17 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: "写真网站",
+      link: [
+        {
+          rel: "icon",
+          type: "image/vnd.microsoft.icon",
+          href: "/icon/favicon.ico",
+        },
+      ],
+    },
+  },
   devtools: { enabled: true },
   modules: [
     "@nuxt/ui",
@@ -8,7 +20,7 @@ export default defineNuxtConfig({
     // "@zadigetvoltaire/nuxt-gtm",
     "nuxt-lodash",
     "@nuxt/image",
-    "@nuxt/content"
+    "@nuxt/content",
   ],
   routeRules: {
     "/": { prerender: true },

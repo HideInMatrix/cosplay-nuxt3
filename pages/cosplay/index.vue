@@ -2,10 +2,10 @@
   <div class="flex justify-center items-center flex-col h-full px-10">
     <USkeleton class="flex-auto" v-show="cosplays.length == 0" />
     <ul class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4 py-3">
-      <li
-        class="space-y-3 relative rounded-md"
+      <NuxtLink
+        class="space-y-3 relative"
         v-for="(item, index) in cosplays"
-        @click="toView(item.id)"
+        :to="`/cosplay/${item.id}`"
         :key="index">
         <USkeleton
           class="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4]"
@@ -18,6 +18,7 @@
             'transition-all',
             'hover:scale-105',
             'aspect-[3/4]',
+            'rounded-md',
           ]"
           :src="item.cover"
           loading="lazy"
@@ -33,15 +34,12 @@
           </h3>
         </div>
         <div class="flex items-center h-8">
-          <div
-            class="relative flex justify-center items-center shrink-0 overflow-hidden rounded-full box-content border-2 border-solid border-inherit w-9 h-9">
-            {{ item.tags?.name[0] }}
-          </div>
+          <UAvatar :alt="item.tags?.name" size="sm" />
           <h3 class="font-medium leading-none text-sm ml-2 truncate">
             {{ item.tags?.name }}
           </h3>
         </div>
-      </li>
+      </NuxtLink>
     </ul>
     <UPagination
       class="py-2"
@@ -56,7 +54,7 @@
 import type { Cosplay } from "~/types/posts";
 
 let page = ref(1);
-let count = ref(20);
+let count = ref(15);
 let total = ref(30);
 
 let cosplays = ref<Cosplay[]>([]);
@@ -95,6 +93,7 @@ const fetchCoseplays = async (shouldResetPage = false) => {
 };
 
 watch([page, count], () => {
+  cosplays.value = []; // 可设置为默认值
   fetchCoseplays();
 });
 onBeforeMount(() => {
@@ -102,8 +101,8 @@ onBeforeMount(() => {
 });
 const router = useRouter();
 
-const toView = (id: number) => {
-  router.push(`/cosplays/${id}`);
-};
+// const toView = (id: number) => {
+//   router.push(`/cosplays/${id}`);
+// };
 </script>
 <style scoped lang="scss"></style>

@@ -9,7 +9,9 @@ export default defineEventHandler(
 
     const { data: dataArray, error } = await client
       .from("posts")
-      .select(`id,title,tags(id,name),content`, { count: "exact" })
+      .select(`id,title,tags(id,name),content,creation_date`, {
+        count: "exact",
+      })
       .filter("id", "eq", pageQuery.id);
 
     const data = dataArray && dataArray.length > 0 ? dataArray[0] : null;

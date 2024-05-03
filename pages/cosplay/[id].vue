@@ -6,7 +6,11 @@
           {{ cosplayer?.title }}
         </h2>
       </div>
-
+      <div class="flex space-x-4 mt-4 mb-6">
+        <p class="text-sm text-muted-foreground">
+          {{ cosplayer?.creation_date }}
+        </p>
+      </div>
       <div class="flex flex-col items-center">
         <div
           class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full">

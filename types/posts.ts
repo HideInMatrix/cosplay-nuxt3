@@ -5,6 +5,7 @@ export interface Cosplay {
   content?: string;
   tag_id?: number;
   onload?: boolean;
+  creation_date?: string;
   tags?: {
     id: number;
     name: string;

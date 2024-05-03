@@ -16,7 +16,7 @@ const links = [
   {
     label: "Cosplay",
     icon: "i-flat-color-icons-camera",
-    to: "/cosplay",
+    to: "/cosplay/",
   },
   {
     label: "Cosers",

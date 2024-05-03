@@ -11,16 +11,18 @@ export default defineNuxtConfig({
         },
       ],
     },
+    layoutTransition: { name: "layout", mode: "out-in" },
   },
   devtools: { enabled: true },
   modules: [
     "@nuxt/ui",
     "nuxt-icon",
     "@nuxtjs/supabase",
-    // "@zadigetvoltaire/nuxt-gtm",
     "nuxt-lodash",
     "@nuxt/image",
     "@nuxt/content",
+    "nuxt-gtag",
+    "@nuxtjs/google-adsense",
   ],
   routeRules: {
     "/": { prerender: true },
@@ -32,5 +34,12 @@ export default defineNuxtConfig({
     url: process.env.NUXT_PUBLIC_SUPABASE_URL,
     key: process.env.NUXT_PUBLIC_SUPABASE_KEY,
     redirect: false,
+  },
+  gtag: {
+    id: process.env.NUXT_PUBLIC_GTAG_ID,
+  },
+  googleAdsense: {
+    id: process.env.NUXT_PUBLIC_GOOGLE_ADS_ID,
+    analyticsDomainName: process.env.NUXT_PUBLIC_URL,
   },
 });

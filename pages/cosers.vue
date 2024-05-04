@@ -20,7 +20,7 @@
     </UInput>
     <USkeleton class="flex-auto" v-show="coserList.length == 0" />
     <ul
-      class="flex-auto grid grid-cols-2 lg:grid-cols-6 gap-8 gap-y-5 py-6 overflow-auto w-full">
+      class="flex-auto grid grid-cols-2 lg:grid-cols- gap-8 gap-y-5 py-6 overflow-auto w-full">
       <li
         class="flex items-center transition-all hover:bg-accent p-3 cursor-pointer h-fit"
         v-for="item in coserList"
@@ -107,4 +107,3 @@ onBeforeMount(() => {
 });
 </script>
 <style scoped lang="scss"></style>
-~/types/tag

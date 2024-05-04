@@ -1,8 +1,8 @@
 <template>
   <div class="flex flex-col lg:flex-row px-8">
     <div class="w-full">
-      <div class="flex justify-between items-center">
-        <h2 class="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight">
+      <div class="flex justify-between items-center py-3">
+        <h2 class="scroll-m-20 text-3xl font-semibold tracking-tight">
           {{ cosplayer?.title }}
         </h2>
       </div>
@@ -13,7 +13,8 @@
       </div>
       <div class="flex flex-col items-center">
         <div
-          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full">
+          v-viewer
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full cursor-zoom-in">
           <NuxtImg
             v-for="item in images"
             :class="[
@@ -23,6 +24,7 @@
               'transition-all',
               'hover:scale-105',
               'aspect-[3/4]',
+              'rounded-md',
             ]"
             :src="item"
             loading="lazy"
@@ -58,14 +60,14 @@ const fetchImages = async () => {
   };
 
   // 发起 API 请求
-  const { data: resp } = await useFetch(`/api/cosplays/getImagesById`, {
+  const { data } = await $fetch(`/api/cosplays/getImagesById`, {
     method: "get",
     params: params,
   });
 
   // 处理响应数据，这里显式检查 undefined 而不是仅根据 truthy 评估
-  if (resp.value && resp.value.data !== undefined) {
-    cosplayer.value = resp.value.data!;
+  if (data !== undefined) {
+    cosplayer.value = data!;
     extractImageSources(cosplayer.value.content || "");
   } else {
     // 如果需要，可以在这里处理错误或者设置 coserList 和 total 为默认值

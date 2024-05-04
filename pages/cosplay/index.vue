@@ -15,7 +15,7 @@
           class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md"
           :src="item.cover"
           loading="lazy"
-          v-if="item.onload"
+          v-show="item.onload"
           @load="
             () => {
               item.onload = true;

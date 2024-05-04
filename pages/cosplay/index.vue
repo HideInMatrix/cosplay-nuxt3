@@ -9,7 +9,7 @@
         :to="`/cosplay/${item.id}`"
         :key="index">
         <USkeleton
-          class="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4]"
+          class="h-auto w-auto object-cover transition-all aspect-[3/4]"
           v-if="!item.onload" />
         <NuxtImg
           :class="[

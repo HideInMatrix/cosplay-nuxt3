@@ -5,7 +5,7 @@
       <div class="main-body">
         <slot />
       </div>
-      <div class="md:w-56 xl:w-64 shrink-0">
+      <div class="md:w-56 xl:w-64 shrink-0 max-lg:hidden">
         <Adsbygoogle ad-slot="1013737103" />
       </div>
     </div>

@@ -6,7 +6,7 @@
       placeholder="名字搜索"
       icon="i-heroicons-magnifying-glass-20-solid"
       autocomplete="off"
-      class="w-2/5 py-10"
+      class="px-px items-center lg:w-1/2 xl:w-2/5 py-5"
       :ui="{ icon: { trailing: { pointer: '' } } }">
       <template #trailing>
         <UButton
@@ -20,7 +20,7 @@
     </UInput>
     <USkeleton class="flex-auto" v-show="coserList.length == 0" />
     <ul
-      class="flex-auto grid grid-cols-2 lg:grid-cols-4 gap-8 gap-y-5 py-6 mt-4">
+      class="flex-auto grid grid-cols-2 lg:grid-cols-6 gap-8 gap-y-5 py-6 overflow-auto w-full">
       <li
         class="flex items-center transition-all hover:bg-accent p-3 cursor-pointer h-fit"
         v-for="item in coserList"

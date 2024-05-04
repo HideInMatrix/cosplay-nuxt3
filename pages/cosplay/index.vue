@@ -1,25 +1,18 @@
 <template>
-  <div class="flex justify-center items-center flex-col h-full px-10">
+  <div class="flex justify-center items-center flex-col h-full">
     <USkeleton class="flex-auto" v-show="cosplays.length == 0" />
     <ul
       class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4 py-3 overflow-auto">
       <NuxtLink
-        class="space-y-3 relative"
+        class="space-y-3 relative flex flex-col"
         v-for="(item, index) in cosplays"
         :to="`/cosplay/${item.id}`"
         :key="index">
         <USkeleton
-          class="h-auto w-auto object-cover transition-all aspect-[3/4]"
+          class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md"
           v-if="!item.onload" />
         <NuxtImg
-          :class="[
-            'h-auto',
-            'w-auto',
-            'object-cover',
-            'transition-all',
-            'aspect-[3/4]',
-            'rounded-md',
-          ]"
+          class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md"
           :src="item.cover"
           loading="lazy"
           @load="
@@ -42,7 +35,7 @@
       </NuxtLink>
     </ul>
     <UPagination
-      class="py-2"
+      class="py-8"
       size="md"
       :page-count="count"
       :total="total"

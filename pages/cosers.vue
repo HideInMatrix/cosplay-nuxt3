@@ -36,7 +36,7 @@
     </ul>
 
     <UPagination
-      class="py-10"
+      class="py-8"
       size="md"
       :page-count="count"
       :total="total"

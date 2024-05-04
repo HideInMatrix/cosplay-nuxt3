@@ -16,11 +16,8 @@ export default defineEventHandler(
     const { data, error, count } = await client
       .from("posts")
       .select(`id,title,tags(id,name),cover,creation_date`, { count: "exact" })
-      // .match(nameFilter)
-      .range(start, end)
-      .order("creation_date", {
-        ascending: true,
-      });
+      .order("id", { ascending: true })
+      .range(start, end);
 
     if (error) {
       throw createError({ statusCode: 500, statusMessage: error.message });

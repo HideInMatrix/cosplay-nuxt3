@@ -6,7 +6,7 @@
       placeholder="名字搜索"
       icon="i-heroicons-magnifying-glass-20-solid"
       autocomplete="off"
-      class="w-2/5 py-2"
+      class="w-2/5 py-10"
       :ui="{ icon: { trailing: { pointer: '' } } }">
       <template #trailing>
         <UButton
@@ -22,7 +22,7 @@
     <ul
       class="flex-auto grid grid-cols-2 lg:grid-cols-4 gap-8 gap-y-5 py-6 mt-4">
       <li
-        class="flex items-center transition-all hover:bg-accent p-3 cursor-pointer"
+        class="flex items-center transition-all hover:bg-accent p-3 cursor-pointer h-fit"
         v-for="item in coserList"
         :key="item.id">
         <div
@@ -36,7 +36,7 @@
     </ul>
 
     <UPagination
-      class="py-2"
+      class="py-10"
       size="md"
       :page-count="count"
       :total="total"

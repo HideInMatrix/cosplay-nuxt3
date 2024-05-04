@@ -22,7 +22,14 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "@nuxt/content",
     "nuxt-gtag",
-    "@nuxtjs/google-adsense",
+    [
+      "@nuxtjs/google-adsense",
+      {
+        id: process.env.NUXT_PUBLIC_GOOGLE_ADS_ID, // replace "#" with "2112345678904791",
+        onPageLoad: false, // this is required to be true for our ads to show in our
+        test: false, // if we are using development env. the test variable will help us to show where your ads will appear
+      },
+    ],
   ],
   routeRules: {
     "/": { prerender: true },
@@ -37,9 +44,5 @@ export default defineNuxtConfig({
   },
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
-  },
-  googleAdsense: {
-    id: process.env.NUXT_PUBLIC_GOOGLE_ADS_ID,
-    analyticsDomainName: process.env.NUXT_PUBLIC_URL,
   },
 });

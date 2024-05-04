@@ -10,13 +10,6 @@ export default defineEventHandler(
       count: number;
       name: string;
     };
-    // 如果query.name存在，则添i模糊搜索条件
-    let nameFilter = {};
-    if (pageQuery.name) {
-      nameFilter = {
-        name: { ilike: `%${pageQuery.name}%` },
-      };
-    }
 
     // 计算分页的起始点
     const start = (pageQuery.page - 1) * pageQuery.count;
@@ -25,9 +18,8 @@ export default defineEventHandler(
     const { data, error, count } = await client
       .from("tags")
       .select("id,name,slug,description,post_count", { count: "exact" })
-      .match(nameFilter)
+      .ilike("name", `%${pageQuery.name}%`)
       .range(start, end);
-
     if (error) {
       throw createError({ statusCode: 500, statusMessage: error.message });
     } else {

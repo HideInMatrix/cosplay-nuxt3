@@ -1,7 +1,8 @@
 <template>
   <div class="flex justify-center items-center flex-col h-full px-10">
     <USkeleton class="flex-auto" v-show="cosplays.length == 0" />
-    <ul class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4 py-3">
+    <ul
+      class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4 py-3 overflow-auto">
       <NuxtLink
         class="space-y-3 relative"
         v-for="(item, index) in cosplays"
@@ -16,7 +17,6 @@
             'w-auto',
             'object-cover',
             'transition-all',
-            'hover:scale-105',
             'aspect-[3/4]',
             'rounded-md',
           ]"

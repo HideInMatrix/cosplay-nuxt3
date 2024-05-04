@@ -1,5 +1,6 @@
 <template>
-  <div class="app-wrapper">
+  <div
+    class="app-wrapper relative flex flex-col items-center w-full h-screen overflow-hidden">
     <NuxtLayout>
       <NuxtPage keepalive />
     </NuxtLayout>
@@ -23,10 +24,10 @@ definePageMeta({
 </style>
 
 <style lang="scss" scoped>
-.app-wrapper {
-  height: 100vh;
-  width: 100vw;
-}
+// .app-wrapper {
+//   height: 100vh;
+//   width: 100vw;
+// }
 .layout-enter-active,
 .layout-leave-active {
   transition: all 0.4s;

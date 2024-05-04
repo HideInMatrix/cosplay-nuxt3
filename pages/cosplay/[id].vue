@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col lg:flex-row">
+  <div class="flex flex-col lg:flex-row px-8">
     <div class="w-full">
       <div class="flex justify-between items-center">
         <h2 class="scroll-m-20 pb-2 text-3xl font-semibold tracking-tight">

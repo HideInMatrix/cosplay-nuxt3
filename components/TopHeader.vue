@@ -1,7 +1,7 @@
 <template>
   <UHorizontalNavigation
     :links="links"
-    class="border-b border-gray-200 justify-center" />
+    class="border-b border-gray-200 justify-center shrink-0" />
 </template>
 
 <script setup lang="ts">

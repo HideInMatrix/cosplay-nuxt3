@@ -4,12 +4,15 @@
     <UDivider />
     <Menu></Menu>
     <div class="absolute p-3 bottom-0 w-full">
-      <UButton color="black" variant="solid" block>登陆</UButton>
+      <UButton color="black" variant="solid" block @click="toLogin"
+        >登陆</UButton
+      >
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import Menu from "~/components/Menu.vue";
+import { toLogin } from "~/hooks/toLogin";
 </script>
 <style scoped lang="scss"></style>

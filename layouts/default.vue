@@ -21,7 +21,8 @@
           <UButton
             class="md:hidden absolute right-0 mr-4"
             color="black"
-            variant="solid">
+            variant="solid"
+            @click="toLogin">
             登陆
           </UButton>
           <UDivider />
@@ -37,6 +38,7 @@
 
 <script setup lang="ts">
 import LeftMenuWrapper from "~/components/LeftMenuWrapper.vue";
+import { toLogin } from "~/hooks/toLogin";
 let isOpen = ref(false);
 </script>
 <style scoped lang="scss">

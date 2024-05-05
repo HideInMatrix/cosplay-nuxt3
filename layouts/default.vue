@@ -1,45 +1,43 @@
 <template>
-  <!-- <div class="app-layout">
-    <div class="main-wrapper">
-      <div class="main-body">
-        <slot />
-      </div>
-      <div class="md:w-56 xl:w-64 shrink-0 max-lg:hidden">
-        <Adsbygoogle ad-slot="1013737103" />
-      </div>
-    </div>
-  </div> -->
-  <main class="flex">
-    <div
-      class="hidden md:block relative md:w-56 xl:w-64 h-screen border-r border-r-border">
-      <div class="h-16"></div>
-      <UDivider />
-      <Menu></Menu>
-      <div class="absolute p-3 bottom-0 w-full">
-        <UButton color="black" variant="solid" block>登陆</UButton>
-      </div>
-    </div>
+  <main class="flex w-full h-full">
+    <LeftMenuWrapper v-model:openFlag="isOpen"></LeftMenuWrapper>
     <div
       dir="ltr"
       class="relative flex flex-col items-center w-full md:w-[calc(100vw-14rem)] xl:w-[calc(100vw-16rem)] h-screen overflow-hidden right-body">
-      <div
-        class="flex justify-center items-center text-lg font-semibold py-3 px-4">
-        <NuxtImg
-          class="w-10 h-10 mr-4"
-          src="icon/favicon.ico"
-          alt="Favicon"></NuxtImg>
-        <div class="text-lg font-semibold">Share Cosplay</div>
-      </div>
-      <UDivider />
-      <div class="w-full px-8 overflow-auto flex-auto">
-        <slot />
+      <div class="h-full w-full rounded-[inherit] flex flex-col">
+        <div
+          class="flex flex-col justify-center items-center relative top-0 bg-white z-10 md:z-0">
+          <div
+            class="md:hidden absolute left-0 ml-4 i-flat-color-icons-menu w-6 h-6"
+            @click="
+              () => {
+                isOpen = true;
+              }
+            "></div>
+          <div class="flex items-center justify-center py-3 px-4">
+            <NuxtImg src="icons/favicon.ico" class="w-10 h-10 mr-4"></NuxtImg>
+            <div class="text-lg font-semibold">Share Cosplay</div>
+          </div>
+          <UButton
+            class="md:hidden absolute right-0 mr-4"
+            color="black"
+            variant="solid">
+            登陆
+          </UButton>
+          <UDivider />
+        </div>
+
+        <div class="w-full px-8 overflow-auto flex-auto">
+          <slot />
+        </div>
       </div>
     </div>
   </main>
 </template>
 
 <script setup lang="ts">
-import Menu from "~/components/Menu.vue";
+import LeftMenuWrapper from "~/components/LeftMenuWrapper.vue";
+let isOpen = ref(false);
 </script>
 <style scoped lang="scss">
 .right-body {

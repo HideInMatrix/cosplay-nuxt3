@@ -9,6 +9,14 @@
 
 <script setup lang="ts">
 definePageMeta({
+  title: "Share Cosplay",
+  meta: [
+    {
+      hid: "micromatrix",
+      name: "写真网站",
+      content: "免费的写真网站",
+    },
+  ],
   key: (route) => route.fullPath,
   transition: {
     name: "page",
@@ -24,10 +32,6 @@ definePageMeta({
 </style>
 
 <style lang="scss" scoped>
-// .app-wrapper {
-//   height: 100vh;
-//   width: 100vw;
-// }
 .layout-enter-active,
 .layout-leave-active {
   transition: all 0.4s;

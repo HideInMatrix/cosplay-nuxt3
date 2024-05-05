@@ -20,7 +20,7 @@
     </UInput>
     <USkeleton class="flex-auto" v-show="coserList.length == 0" />
     <ul
-      class="flex-auto grid grid-cols-2 lg:grid-cols- gap-8 gap-y-5 py-6 overflow-auto w-full">
+      class="flex-auto grid grid-cols-2 lg:grid-cols-6 gap-8 gap-y-5 py-6 overflow-auto w-full">
       <li
         class="flex items-center transition-all hover:bg-accent p-3 cursor-pointer h-fit"
         v-for="item in coserList"
@@ -49,8 +49,8 @@ import type { Tag } from "~/types/tag";
 
 let cosersName = ref("");
 let page = ref(1);
-let count = ref(20);
-let total = ref(30);
+let count = ref(24);
+let total = ref(1);
 let coserList = ref<Tag[]>([]);
 // 定义一个获取Coser数据的函数
 const fetchCosers = async (shouldResetPage = false) => {

@@ -47,8 +47,8 @@
 import type { Cosplay } from "~/types/posts";
 
 let page = ref(1);
-let count = ref(15);
-let total = ref(30);
+let count = ref(30);
+let total = ref(1);
 
 let cosplays = ref<Cosplay[]>([]);
 

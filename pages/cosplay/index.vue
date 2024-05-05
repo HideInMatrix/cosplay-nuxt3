@@ -4,18 +4,17 @@
     <ul
       class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4 py-3 overflow-auto flex-auto">
       <NuxtLink
-        class="space-y-3 relative flex flex-col"
+        class="space-y-3 relative flex flex-col relative"
         v-for="(item, index) in cosplays"
         :to="`/cosplay/${item.id}`"
         :key="index">
         <USkeleton
-          class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md"
+          class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md absolute top-0 left-0"
           v-if="!item.onload" />
         <NuxtImg
           class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md"
           :src="item.cover"
           loading="lazy"
-          v-show="item.onload"
           @load="
             () => {
               item.onload = true;

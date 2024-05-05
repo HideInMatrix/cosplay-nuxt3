@@ -31,13 +31,25 @@
             alt="" />
         </div>
       </div>
+      <!-- 猜你喜欢 -->
+      <div class="mt-6 mb-6">
+        <p class="text-sm text-muted-foreground">猜你喜欢</p>
+        <div class="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-6 gap-5 mt-5">
+          <GuessLike :cosplays="cosplays"></GuessLike>
+        </div>
+      </div>
     </div>
+    <!-- <div class="ml-0 md:ml-8 mt-6 md:mt-0 min-w-64 max-w-64">
+      <p class="text-sm text-muted-foreground">热门推荐</p>
+    </div> -->
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRoute } from "nuxt/app";
 import type { Cosplay } from "~/types/posts";
+import GuessLike from "~/components/GuessLike.vue";
+import { fetchCoseplaysByTagId, cosplays } from "~/hooks/getCosplaysByTagId";
 
 const route = useRoute();
 let cosplayer = ref<Cosplay | null>();
@@ -77,6 +89,7 @@ const fetchImages = async () => {
 
 onBeforeMount(() => {
   fetchImages();
+  fetchCoseplaysByTagId({ page: 1, count: 5 });
 });
 </script>
 <style scoped lang="scss"></style>

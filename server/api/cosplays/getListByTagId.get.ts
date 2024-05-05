@@ -4,21 +4,17 @@ export default defineEventHandler(
   async (event): Promise<{ data: Cosplay[] | null; total: number | null }> => {
     const client = await serverSupabaseClient(event);
     const pageQuery = getQuery(event) as {
-      page: number;
+      filterId: number;
       count: number;
       tagId: number;
     };
 
-    // 计算分页的起始点
-    const start = (pageQuery.page - 1) * pageQuery.count;
-    const end = pageQuery.page * pageQuery.count - 1;
-
     const { data, error, count } = await client
       .from("posts")
-      .select(`id,title,tags(id,name),cover,creation_date`, { count: "exact" })
+      .select(`id,title,cover,creation_date`)
       .filter("tag_id", "eq", pageQuery.tagId)
       .order("creation_date", { ascending: true })
-      .range(start, end);
+      .limit(pageQuery.count);
 
     if (error) {
       throw createError({ statusCode: 500, statusMessage: error.message });

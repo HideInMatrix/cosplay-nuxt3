@@ -81,6 +81,11 @@ const fetchImages = async () => {
   if (data !== undefined) {
     cosplayer.value = data!;
     extractImageSources(cosplayer.value.content || "");
+    fetchCoseplaysByTagId({
+      count: 5,
+      tagId: cosplayer.value?.tags?.id,
+      filterId: +route.params.id,
+    });
   } else {
     // 如果需要，可以在这里处理错误或者设置 coserList 和 total 为默认值
     cosplayer.value = null; // 可设置为默认值
@@ -89,7 +94,6 @@ const fetchImages = async () => {
 
 onBeforeMount(() => {
   fetchImages();
-  fetchCoseplaysByTagId({ page: 1, count: 5 });
 });
 </script>
 <style scoped lang="scss"></style>

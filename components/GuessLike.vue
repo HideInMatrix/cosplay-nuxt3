@@ -17,7 +17,9 @@
         }
       "
       alt="" />
-    <small class="mt-2 h-10 text-sm font-medium line-clamp-2"></small>
+    <small class="mt-2 h-10 text-sm font-medium line-clamp-2">{{
+      item.title
+    }}</small>
     <div class="flex justify-between mt-2">
       <small class="text-sm text-muted-foreground">{{
         item.creation_date

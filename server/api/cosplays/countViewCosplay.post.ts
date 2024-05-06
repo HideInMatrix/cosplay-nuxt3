@@ -35,11 +35,13 @@ export default defineEventHandler(
     // 检查是否已经有来自同一个IP的记录
     const { data: viewExists, error: viewError } = await client
       .from("post_views")
-      .select("id")
-      .eq("post_id", query.postId)
-      .single();
+      .select("id,created_at")
+      .or(`post_id.eq.${query.postId}, ip.eq.${ip}`);
 
-    if (!viewExists) {
+    if (viewError) {
+      throw createError({ status: 500, statusMessage: viewError.message });
+    }
+    if (viewExists.length === 0) {
       // 创建一个新的视图记录
       const { error: createViewError } = await client
         .from("post_views")
@@ -57,7 +59,7 @@ export default defineEventHandler(
         .from("posts")
         .update({ view_count: data.view_count + 1 } as never)
         .eq("id", query.postId)
-        .single();
+        .select();
 
       if (updateError) {
         throw createError({
@@ -66,9 +68,12 @@ export default defineEventHandler(
         });
       }
       // 如果更新成功，则返回新的 view_count
-      if (updateData && (updateData as { view_count: number }).view_count > 0) {
+      if (
+        updateData &&
+        (updateData as { view_count: number }[])[0].view_count > 0
+      ) {
         // 取更新后的第一条记录的 view_count
-        const updatedViewCount = (updateData as { view_count: number })
+        const updatedViewCount = (updateData as { view_count: number }[])[0]
           .view_count;
         return { ip, viewCount: updatedViewCount };
       } else {
@@ -77,11 +82,17 @@ export default defineEventHandler(
           statusMessage: "无法更新 view_count",
         });
       }
+    } else {
+      console.log(viewExists);
+      const createdTime = new Date(viewExists[0].created_at);
+      if (new Date().getTime() - createdTime.getTime() > 30 * 60 * 1000) {
+        // 30分钟
+
+        console.log("30分钟之外");
+      }
     }
 
     // 如果已经存在来自该IP的浏览记录，直接返回当前的 view_count
     return { ip, viewCount: data.view_count };
-
-    // const {data,error} = await client.from('')
   }
 );

@@ -12,7 +12,7 @@
         </p>
         <p class="text-sm text-muted-foreground">•</p>
         <p class="text-sm text-muted-foreground">
-          {{ cosplayer?.view_count }}&nbsp;浏览
+          {{ cosplayer?.view_count || 0 }}&nbsp;浏览
         </p>
       </div>
       <div class="flex flex-col items-center">
@@ -54,6 +54,7 @@ import { useRoute } from "nuxt/app";
 import type { Cosplay } from "~/types/posts";
 import GuessLike from "~/components/GuessLike.vue";
 import { fetchCoseplaysByTagId, cosplays } from "~/hooks/getCosplaysByTagId";
+import { dateFormat } from "~/public/utils/index";
 
 const route = useRoute();
 let cosplayer = ref<Cosplay | null>();

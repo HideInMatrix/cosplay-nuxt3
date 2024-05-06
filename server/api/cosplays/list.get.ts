@@ -15,7 +15,9 @@ export default defineEventHandler(
 
     const { data, error, count } = await client
       .from("posts")
-      .select(`id,title,tags(id,name),cover,creation_date`, { count: "exact" })
+      .select(`id,title,tags(id,name),cover,creation_date`, {
+        count: "exact",
+      })
       .order("id", { ascending: false })
       .range(start, end);
 

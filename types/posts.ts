@@ -10,4 +10,5 @@ export interface Cosplay {
     id: number;
     name: string;
   };
+  view_count?: number;
 }

@@ -10,6 +10,10 @@
         <p class="text-sm text-muted-foreground">
           {{ cosplayer?.creation_date }}
         </p>
+        <p class="text-sm text-muted-foreground">•</p>
+        <p class="text-sm text-muted-foreground">
+          {{ cosplayer?.view_count }}&nbsp;浏览
+        </p>
       </div>
       <div class="flex flex-col items-center">
         <div
@@ -98,11 +102,11 @@ const addView = async () => {
     postId: route.params.id,
   };
 
-  let { ip } = await $fetch("/api/cosplays/countViewCosplay", {
+  let { viewCount } = await $fetch("/api/cosplays/countViewCosplay", {
     method: "post",
     params: params,
   });
-  console.log(ip);
+  cosplayer.value!.view_count = viewCount;
 };
 
 onBeforeMount(() => {

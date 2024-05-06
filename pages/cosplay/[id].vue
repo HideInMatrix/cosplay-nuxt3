@@ -92,8 +92,22 @@ const fetchImages = async () => {
   }
 };
 
+const addView = async () => {
+  // 构造请求参数
+  const params = {
+    postId: route.params.id,
+  };
+
+  let { ip } = await $fetch("/api/cosplays/countViewCosplay", {
+    method: "post",
+    params: params,
+  });
+  console.log(ip);
+};
+
 onBeforeMount(() => {
   fetchImages();
+  addView();
 });
 </script>
 <style scoped lang="scss"></style>

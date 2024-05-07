@@ -18,13 +18,13 @@
             <NuxtImg src="icons/favicon.ico" class="w-10 h-10 mr-4"></NuxtImg>
             <div class="text-lg font-semibold">Share Cosplay</div>
           </div>
-          <UButton
+          <!-- <UButton
             class="md:hidden absolute right-0 mr-4"
             color="black"
             variant="solid"
             @click="toLogin">
             登陆
-          </UButton>
+          </UButton> -->
           <UDivider />
         </div>
 

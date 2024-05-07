@@ -83,12 +83,9 @@ export default defineEventHandler(
         });
       }
     } else {
-      console.log(viewExists);
       const createdTime = new Date(viewExists[0].created_at);
       if (new Date().getTime() - createdTime.getTime() > 30 * 60 * 1000) {
         // 30分钟
-
-        console.log("30分钟之外");
       }
     }
 

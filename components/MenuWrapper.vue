@@ -4,9 +4,9 @@
     <UDivider />
     <Menu></Menu>
     <div class="absolute p-3 bottom-0 w-full">
-      <UButton color="black" variant="solid" block @click="toLogin">
+      <!-- <UButton color="black" variant="solid" block @click="toLogin">
         登陆
-      </UButton>
+      </UButton> -->
     </div>
   </div>
 </template>

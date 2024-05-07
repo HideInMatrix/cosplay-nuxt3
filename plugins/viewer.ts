@@ -2,7 +2,7 @@ import Viewer from "v-viewer";
 import "viewerjs/dist/viewer.css";
 export default defineNuxtPlugin({
   name: "viewer",
-  enforce: process.server ? "pre" : "post", // 或 'post'
+  // enforce: process.server ? "pre" : "post", // 或 'post'
   async setup(nuxtApp) {
     // 这相当于一个普通的功能性插件
   },

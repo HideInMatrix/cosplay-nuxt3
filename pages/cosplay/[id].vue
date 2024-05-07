@@ -54,7 +54,7 @@ import { useRoute } from "nuxt/app";
 import type { Cosplay } from "~/types/posts";
 import GuessLike from "~/components/GuessLike.vue";
 import { fetchCoseplaysByTagId, cosplays } from "~/hooks/getCosplaysByTagId";
-import { dateFormat } from "~/public/utils/index";
+// import { dateFormat } from "~/public/utils/index";
 
 const route = useRoute();
 let cosplayer = ref<Cosplay | null>();
@@ -75,39 +75,46 @@ const fetchImages = async () => {
   const params = {
     id: route.params.id,
   };
-
-  // 发起 API 请求
-  const { data } = await $fetch(`/api/cosplays/getImagesById`, {
-    method: "get",
-    params: params,
-  });
-
-  // 处理响应数据，这里显式检查 undefined 而不是仅根据 truthy 评估
-  if (data !== undefined) {
-    cosplayer.value = data!;
-    extractImageSources(cosplayer.value.content || "");
-    fetchCoseplaysByTagId({
-      count: 5,
-      tagId: cosplayer.value?.tags?.id,
-      filterId: +route.params.id,
+  try {
+    // 发起 API 请求
+    const { data } = await $fetch(`/api/cosplays/getImagesById`, {
+      method: "get",
+      params: params,
     });
-  } else {
-    // 如果需要，可以在这里处理错误或者设置 coserList 和 total 为默认值
-    cosplayer.value = null; // 可设置为默认值
+
+    // 处理响应数据，这里显式检查 undefined 而不是仅根据 truthy 评估
+    if (data !== undefined) {
+      cosplayer.value = data!;
+      extractImageSources(cosplayer.value.content || "");
+      fetchCoseplaysByTagId({
+        count: 5,
+        tagId: cosplayer.value?.tags?.id,
+        filterId: +route.params.id,
+      });
+    } else {
+      // 如果需要，可以在这里处理错误或者设置 coserList 和 total 为默认值
+      cosplayer.value = null; // 可设置为默认值
+    }
+  } catch (error) {
+    console.error("Fetch error:", error);
   }
 };
 
 const addView = async () => {
-  // 构造请求参数
-  const params = {
-    postId: route.params.id,
-  };
+  try {
+    // 构造请求参数
+    const params = {
+      postId: route.params.id,
+    };
 
-  let { viewCount } = await $fetch("/api/cosplays/countViewCosplay", {
-    method: "post",
-    params: params,
-  });
-  cosplayer.value!.view_count = viewCount;
+    let { viewCount } = await $fetch("/api/cosplays/countViewCosplay", {
+      method: "post",
+      params: params,
+    });
+    cosplayer.value!.view_count = viewCount;
+  } catch (error) {
+    console.error("Fetch error:", error);
+  }
 };
 
 onBeforeMount(() => {

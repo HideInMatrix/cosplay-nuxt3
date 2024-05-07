@@ -41,6 +41,7 @@
         <div class="grid grid-cols-2 md:grid-cols-3 2xl:grid-cols-6 gap-5 mt-5">
           <GuessLike :cosplays="cosplays"></GuessLike>
         </div>
+        <Adsbygoogle ad-slot="1013737103" />
       </div>
     </div>
     <!-- <div class="ml-0 md:ml-8 mt-6 md:mt-0 min-w-64 max-w-64">

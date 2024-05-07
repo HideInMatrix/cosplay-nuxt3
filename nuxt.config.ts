@@ -9,11 +9,19 @@ export default defineNuxtConfig({
           type: "image/vnd.microsoft.icon",
           href: "/icon/favicon.ico",
         },
+        // {
+        //   rel: "stylesheet",
+        //   href: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css",
+        // },
+      ],
+      script: [
+        // {
+        //   src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js",
+        // },
       ],
     },
     layoutTransition: { name: "layout", mode: "out-in" },
   },
-  // plugins: [{ src: "~/plugins/viewer.ts", ssr: false }],
   devtools: { enabled: true },
   modules: [
     "@nuxt/ui",

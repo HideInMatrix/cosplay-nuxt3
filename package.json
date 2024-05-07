@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@fancyapps/ui": "^5.0.36",
     "@iconify-json/flat-color-icons": "^1.1.10",
     "@nuxt/content": "^2.12.1",
     "@nuxt/image": "^1.6.0",
@@ -21,8 +22,6 @@
     "bcrypt": "^5.1.1",
     "nuxt": "^3.11.2",
     "sass": "^1.75.0",
-    "v-viewer": "^3.0.13",
-    "viewerjs": "^1.11.6",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"
   },

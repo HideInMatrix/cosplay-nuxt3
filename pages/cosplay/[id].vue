@@ -16,24 +16,29 @@
         </p>
       </div>
       <div class="flex flex-col items-center">
-        <div
-          v-viewer
-          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full cursor-zoom-in markdown-body-box">
-          <NuxtImg
-            v-for="item in images"
-            :class="[
-              'h-auto',
-              'w-auto',
-              'object-cover',
-              'transition-all',
-              'hover:scale-105',
-              'aspect-[3/4]',
-              'rounded-md',
-            ]"
-            :src="item"
-            loading="lazy"
-            alt="" />
-        </div>
+        <ClientOnly>
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full cursor-zoom-in">
+            <NuxtLink
+              data-fancybox="gallery"
+              :href="item"
+              v-for="item in images">
+              <NuxtImg
+                :class="[
+                  'h-auto',
+                  'w-auto',
+                  'object-cover',
+                  'transition-all',
+                  'hover:scale-105',
+                  'aspect-[3/4]',
+                  'rounded-md',
+                ]"
+                :src="item"
+                loading="lazy"
+                alt="" />
+            </NuxtLink>
+          </div>
+        </ClientOnly>
       </div>
       <!-- 猜你喜欢 -->
       <div class="mt-6 mb-6">

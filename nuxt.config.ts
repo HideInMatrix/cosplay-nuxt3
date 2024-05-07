@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     },
     layoutTransition: { name: "layout", mode: "out-in" },
   },
-  plugins: [{ src: "~/plugins/viewer.ts", ssr: false }],
+  plugins: [{ src: "~/plugins/viewer.ts", ssr: true }],
   devtools: { enabled: true },
   modules: [
     "@nuxt/ui",

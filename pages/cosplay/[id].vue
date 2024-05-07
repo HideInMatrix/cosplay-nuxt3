@@ -17,6 +17,7 @@
       </div>
       <div class="flex flex-col items-center">
         <div
+          v-viewer
           class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full cursor-zoom-in">
           <NuxtImg
             v-for="item in images"

@@ -24,6 +24,6 @@ export default defineNuxtPlugin({
   },
   env: {
     // 如果不希望插件在仅渲染服务器端或孤立组件时运行，请将此值设置为`false`。
-    islands: false,
+    islands: true,
   },
 });

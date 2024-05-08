@@ -22,7 +22,7 @@
             <NuxtLink
               data-fancybox="gallery"
               :href="item.src"
-              v-for="item in images">
+              v-for="item in temImages">
               <USkeleton
                 class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md absolute top-0 left-0"
                 v-if="!item.onload" />
@@ -47,6 +47,15 @@
             </NuxtLink>
           </div>
         </ClientOnly>
+        <UButton
+          type="submit"
+          color="black"
+          class="mt-4"
+          v-if="loadBtnFlag"
+          size="xl"
+          @click="loadMoreImages">
+          加载更多
+        </UButton>
       </div>
       <!-- 猜你喜欢 -->
       <div class="mt-6 mb-6">
@@ -73,12 +82,36 @@ import { fetchCoseplaysByTagId, cosplays } from "~/hooks/getCosplaysByTagId";
 const route = useRoute();
 let cosplayer = ref<Cosplay | null>();
 const images = ref<{ src: string; onload: boolean }[]>([]);
+let temImages = ref<{ src: string; onload: boolean }[]>([]);
+let loadedCount = ref(12);
+let loadBtnFlag = ref(true);
 const extractImageSources = (markdownText: string) => {
   const regex = /!\[\]\((.*?)\)/g;
   let match;
 
   while ((match = regex.exec(markdownText)) !== null) {
     images.value.push({ src: match[1], onload: false });
+  }
+  temImages.value = images.value.slice(0, 12);
+};
+
+const loadMoreImages = () => {
+  // 一次获取12个数据
+  const loadCount = 12;
+  // 从已加载的数量开始，获取接下来的loadCount个数据
+  for (
+    let i = loadedCount.value;
+    i < Math.min(loadedCount.value + loadCount, images.value.length);
+    i++
+  ) {
+    temImages.value.push(images.value[i]);
+  }
+  // 更新已加载的数量
+  loadedCount.value += loadCount;
+  // 如果所有图像都已加载，则可以隐藏加载按钮
+  if (loadedCount.value >= images.value.length) {
+    // 隐藏加载更多的按钮 (这通常在模板中处理，例如通过v-if指令)
+    loadBtnFlag.value = false;
   }
 };
 

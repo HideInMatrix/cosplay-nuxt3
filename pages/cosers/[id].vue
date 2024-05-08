@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full px-8 h-full">
+  <div class="w-full px-8 h-full flex flex-col">
     <!-- 背景 -->
     <div class="relative h-1/4">
       <NuxtImg
@@ -46,7 +46,8 @@
     </div>
 
     <!-- 作品集 -->
-    <div class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4">
+    <div
+      class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4 flex-auto overflow-auto">
       <ImageItems :cosplays="cosplays"></ImageItems>
     </div>
     <UPagination
@@ -88,7 +89,10 @@ watch(productionName, () => {
 
 watch([page, count], async () => {
   cosplays.value = []; // 可设置为默认值
-  fetchCoseplays({ page: page.value, count: count.value });
+  fetchCoseplays({
+    title: productionName.value,
+    tagId: route.params.id as string,
+  });
 });
 onBeforeMount(async () => {
   getCoserInfo(route.params.id as string);

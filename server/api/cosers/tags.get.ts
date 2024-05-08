@@ -19,6 +19,7 @@ export default defineEventHandler(
       .from("tags")
       .select("id,name,slug,description,post_count", { count: "exact" })
       .ilike("name", `%${pageQuery.name}%`)
+      .order("id", { ascending: false })
       .range(start, end);
     if (error) {
       throw createError({ statusCode: 500, statusMessage: error.message });

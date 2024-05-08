@@ -21,8 +21,11 @@
             class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full cursor-zoom-in">
             <NuxtLink
               data-fancybox="gallery"
-              :href="item"
+              :href="item.src"
               v-for="item in images">
+              <USkeleton
+                class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md absolute top-0 left-0"
+                v-if="!item.onload" />
               <NuxtImg
                 :class="[
                   'h-auto',
@@ -33,8 +36,13 @@
                   'aspect-[3/4]',
                   'rounded-md',
                 ]"
-                :src="item"
+                :src="item.src"
                 loading="lazy"
+                @load="
+                  () => {
+                    item.onload = true;
+                  }
+                "
                 alt="" />
             </NuxtLink>
           </div>
@@ -64,13 +72,13 @@ import { fetchCoseplaysByTagId, cosplays } from "~/hooks/getCosplaysByTagId";
 
 const route = useRoute();
 let cosplayer = ref<Cosplay | null>();
-const images = ref<string[]>([]);
+const images = ref<{ src: string; onload: boolean }[]>([]);
 const extractImageSources = (markdownText: string) => {
   const regex = /!\[\]\((.*?)\)/g;
   let match;
 
   while ((match = regex.exec(markdownText)) !== null) {
-    images.value.push(match[1]);
+    images.value.push({ src: match[1], onload: false });
   }
 };
 

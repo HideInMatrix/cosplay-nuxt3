@@ -21,8 +21,9 @@
     <USkeleton class="flex-auto" v-show="coserList.length == 0" />
     <ul
       class="flex-auto grid grid-cols-2 lg:grid-cols-6 gap-8 gap-y-5 py-6 overflow-auto w-full">
-      <li
+      <NuxtLink
         class="flex items-center transition-all hover:bg-accent p-3 cursor-pointer h-fit"
+        :to="`/cosers/${item.id}`"
         v-for="item in coserList"
         :key="item.id">
         <div
@@ -32,7 +33,7 @@
         <h3 class="font-medium leading-none text-sm ml-2 truncate">
           {{ item.name }}
         </h3>
-      </li>
+      </NuxtLink>
     </ul>
 
     <UPagination

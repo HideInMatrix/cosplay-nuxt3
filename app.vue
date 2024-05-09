@@ -8,23 +8,12 @@
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  title: "Share Cosplay",
-  meta: [
-    {
-      hid: "micromatrix",
-      name: "写真网站",
-      content: "免费的写真网站",
-    },
-  ],
-  key: (route) => route.fullPath,
-  transition: {
-    name: "page",
-  },
-  keepalive: {
-    exclude: ["cosplay", "cosers", "cosplays/[id]"], // 需要缓存的页面
-  },
-});
+// definePageMeta({
+//   key: (route) => route.fullPath,
+//   transition: {
+//     name: "page",
+//   },
+// });
 </script>
 
 <style lang="scss">

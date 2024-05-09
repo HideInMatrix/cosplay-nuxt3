@@ -9,18 +9,20 @@ export default defineNuxtConfig({
           type: "image/vnd.microsoft.icon",
           href: "/icon/favicon.ico",
         },
-        // {
-        //   rel: "stylesheet",
-        //   href: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css",
-        // },
       ],
-      script: [
-        // {
-        //   src: "https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js",
-        // },
+      script: [],
+      meta: [
+        {
+          hid: "micromatrix",
+          name: "写真网站",
+          content: "免费的写真网站",
+        },
       ],
     },
     layoutTransition: { name: "layout", mode: "out-in" },
+    keepalive: {
+      exclude: ["cosplay", "cosers", "cosplays/[id]"], // 需要缓存的页面
+    },
   },
   devtools: { enabled: true },
   modules: [
@@ -64,6 +66,7 @@ export default defineNuxtConfig({
           method: "post",
         },
       },
+      token: { signInResponseTokenPointer: "/token/accessToken" },
     },
   },
 });

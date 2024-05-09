@@ -72,6 +72,9 @@ async function onSubmit(event: FormSubmitEvent<any>) {
     },
   });
   console.log(data);
+
+  const { data: AuthData, status } = useAuth();
+  console.log("AuthData", AuthData, status);
 }
 
 let passwordType = ref("password");

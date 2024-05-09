@@ -5,9 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@fancyapps/ui':
-    specifier: ^5.0.36
-    version: 5.0.36
   '@iconify-json/flat-color-icons':
     specifier: ^1.1.10
     version: 1.1.10
@@ -640,10 +637,6 @@ packages:
     os: [win32]
     requiresBuild: true
     optional: true
-
-  /@fancyapps/ui@5.0.36:
-    resolution: {integrity: sha512-GMygQzp1MBTFNTT6AzpbL6pXTD6bTxwjmmpI1fe8Ozmmiseu8/g82Sudl1YhcbZmS4bJgaBOF5THDFGpXQ1fDw==}
-    dev: false
 
   /@fastify/accept-negotiator@1.1.0:
     resolution: {integrity: sha512-OIHZrb2ImZ7XG85HXOONLcJWGosv7sIvM2ifAPQVhg9Lv7qdmMBNVaai4QTdyuaqbKM5eO6sLSQOYI7wEQeCJQ==}

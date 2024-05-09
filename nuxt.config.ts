@@ -41,7 +41,6 @@ export default defineNuxtConfig({
         test: false, // if we are using development env. the test variable will help us to show where your ads will appear
       },
     ],
-    "@sidebase/nuxt-auth",
   ],
   routeRules: {
     "/": { prerender: true },
@@ -56,17 +55,5 @@ export default defineNuxtConfig({
   },
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
-  },
-  auth: {
-    provider: {
-      type: "local",
-      endpoints: {
-        signIn: {
-          path: "/api/users/login",
-          method: "post",
-        },
-      },
-      token: { signInResponseTokenPointer: "/token/accessToken" },
-    },
   },
 });

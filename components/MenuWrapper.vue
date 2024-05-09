@@ -13,6 +13,6 @@
 
 <script setup lang="ts">
 import Menu from "~/components/Menu.vue";
-import { toLogin } from "~/hooks/toLogin";
+// import { toLogin } from "~/hooks/toLogin";
 </script>
 <style scoped lang="scss"></style>

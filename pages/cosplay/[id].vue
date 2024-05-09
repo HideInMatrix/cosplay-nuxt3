@@ -18,32 +18,8 @@
       <div class="flex flex-col items-center">
         <ClientOnly>
           <div
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full cursor-zoom-in"
-            v-viewer>
-            <div v-for="item in temImages">
-              <USkeleton
-                class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md absolute top-0 left-0"
-                v-if="!item.onload" />
-              <NuxtImg
-                :class="[
-                  'h-auto',
-                  'w-auto',
-                  'object-cover',
-                  'transition-all',
-                  'hover:scale-105',
-                  'aspect-[3/4]',
-                  'rounded-md',
-                ]"
-                :src="item.src"
-                loading="lazy"
-                @load="
-                  () => {
-                    item.onload = true;
-                  }
-                "
-                alt="" />
-            </div>
-            <!-- <NuxtLink
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full cursor-zoom-in">
+            <NuxtLink
               data-fancybox="gallery"
               :href="item.src"
               v-for="item in temImages">
@@ -51,16 +27,10 @@
                 class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md absolute top-0 left-0"
                 v-if="!item.onload" />
               <NuxtImg
-                :class="[
-                  'h-auto',
-                  'w-auto',
-                  'object-cover',
-                  'transition-all',
-                  'hover:scale-105',
-                  'aspect-[3/4]',
-                  'rounded-md',
-                ]"
+                quality="60"
+                class="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4] rounded-md"
                 :src="item.src"
+                format="webp"
                 loading="lazy"
                 @load="
                   () => {
@@ -68,7 +38,7 @@
                   }
                 "
                 alt="" />
-            </NuxtLink> -->
+            </NuxtLink>
           </div>
         </ClientOnly>
         <UButton

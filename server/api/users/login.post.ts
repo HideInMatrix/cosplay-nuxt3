@@ -9,7 +9,7 @@ export default eventHandler(async (event) => {
   };
   const { data, error } = await client
     .from("users")
-    .select("name,email,password")
+    .select("id,name,email,password")
     .eq("email", pageQuery.email)
     .single();
 
@@ -22,7 +22,7 @@ export default eventHandler(async (event) => {
   let dataPassword = data.password;
   let flag = await bcrypt.compare(pageQuery.password, dataPassword);
   if (flag) {
-    return { data };
+    return { data: { name: data.name, email: data.email, id: data.id } };
   } else {
     return { data: {} };
   }

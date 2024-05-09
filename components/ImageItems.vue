@@ -8,6 +8,8 @@
       class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md absolute top-0 left-0"
       v-if="!item.onload" />
     <NuxtImg
+      quality="60"
+      format="webp"
       class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md"
       :src="item.cover"
       loading="lazy"

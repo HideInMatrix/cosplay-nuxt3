@@ -50,6 +50,8 @@ definePageMeta({
 });
 import type { FormError, FormSubmitEvent } from "#ui/types";
 
+const token = useToken();
+
 const state = reactive({
   email: undefined,
   password: undefined,
@@ -71,10 +73,10 @@ async function onSubmit(event: FormSubmitEvent<any>) {
       password: event.data.password,
     },
   });
-  console.log(data);
-
-  const { data: AuthData, status } = useAuth();
-  console.log("AuthData", AuthData, status);
+  const tokenCookie = useCookie<string | undefined>("token");
+  if (data) {
+  }
+  console.log(data, tokenCookie);
 }
 
 let passwordType = ref("password");

@@ -1,6 +1,10 @@
 import type { Cosplay } from "~/types/posts";
 
-export let cosplays = ref<Cosplay[]>([]);
+export let cosplays = ref<Cosplay[]>(
+  Array(12)
+    .fill(null)
+    .map(() => ({ id: 1, title: "" }))
+);
 export let total = ref(1);
 export const fetchCoseplays = async ({
   shouldResetPage = false,

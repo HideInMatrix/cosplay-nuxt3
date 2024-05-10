@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col lg:flex-row px-8">
-    <div class="w-full">
+    <div class="w-full flex flex-col">
       <div class="flex justify-between items-center py-3">
         <h2 class="scroll-m-20 text-3xl font-semibold tracking-tight">
           {{ cosplayer?.title }}
@@ -16,22 +16,24 @@
         </p>
       </div>
       <div class="flex flex-col items-center">
-        <ClientOnly>
-          <div
-            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full cursor-zoom-in">
+        <div
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-6 gap-3 w-full flex-auto">
+          <ClientOnly>
             <NuxtLink
               data-fancybox="gallery"
+              class="w-249px h-332px overflow-hidden"
               :href="item.src"
               v-for="item in temImages">
               <USkeleton
-                class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md absolute top-0 left-0"
+                class="object-cover transition-all aspect-[3/4] rounded-md w-full h-full"
                 v-if="!item.onload" />
-              <img
+              <NuxtImg
                 quality="60"
-                class="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4] rounded-md"
+                class="w-full h-full object-cover transition-all hover:scale-105 aspect-[3/4] rounded-md"
                 :src="item.src"
                 format="webp"
                 loading="lazy"
+                v-show="item.onload"
                 @load="
                   () => {
                     item.onload = true;
@@ -39,8 +41,8 @@
                 "
                 alt="cos image" />
             </NuxtLink>
-          </div>
-        </ClientOnly>
+          </ClientOnly>
+        </div>
         <UButton
           type="submit"
           color="black"
@@ -76,7 +78,11 @@ import { fetchCoseplaysByTagId, cosplays } from "~/hooks/getCosplaysByTagId";
 const route = useRoute();
 let cosplayer = ref<Cosplay | null>();
 const images = ref<{ src: string; onload: boolean }[]>([]);
-let temImages = ref<{ src: string; onload: boolean }[]>([]);
+let temImages = ref<{ src: string; onload: boolean }[]>(
+  Array(12)
+    .fill(null)
+    .map(() => ({ src: "", onload: false }))
+);
 let loadedCount = ref(12);
 let loadBtnFlag = ref(true);
 const extractImageSources = (markdownText: string) => {

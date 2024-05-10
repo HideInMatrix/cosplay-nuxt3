@@ -1,8 +1,7 @@
 <template>
   <div class="flex justify-center items-center flex-col h-full">
-    <USkeleton class="flex-auto" v-show="cosplays.length == 0" />
     <ul
-      class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4 py-3 overflow-auto flex-auto">
+      class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4 py-3 overflow-auto flex-auto h-full w-full">
       <ImageItems :cosplays="cosplays"></ImageItems>
     </ul>
     <UPagination

@@ -1,18 +1,19 @@
 <template>
   <NuxtLink
-    class="space-y-3 relative flex flex-col relative"
+    class="space-y-3 flex flex-col"
     v-for="(item, index) in cosplays"
     :to="`/cosplay/${item.id}`"
     :key="index">
     <USkeleton
-      class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md absolute top-0 left-0"
+      class="object-cover transition-all aspect-[3/4] rounded-md w-full h-full"
       v-if="!item.onload" />
     <NuxtImg
       quality="60"
       format="webp"
-      class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md"
+      class="w-249px h-332px object-cover transition-all aspect-[3/4] rounded-md"
       :src="item.cover"
       loading="lazy"
+      v-show="item.onload"
       @load="
         () => {
           item.onload = true;

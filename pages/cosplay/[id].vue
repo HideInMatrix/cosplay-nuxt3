@@ -68,7 +68,11 @@ import { fetchCoseplaysByTagId, cosplays } from "~/hooks/getCosplaysByTagId";
 const route = useRoute();
 let cosplayer = ref<Cosplay | null>();
 const images = ref<{ src: string; onload: boolean }[]>([]);
-let temImages = ref<{ src: string; onload: boolean }[]>([]);
+let temImages = ref<{ src: string; onload: boolean }[]>(
+  Array(12)
+    .fill(null)
+    .map((item) => ({ src: "", onload: false }))
+);
 let loadedCount = ref(12);
 let loadBtnFlag = ref(true);
 const extractImageSources = (markdownText: string) => {

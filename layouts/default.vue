@@ -4,7 +4,7 @@
     <div
       dir="ltr"
       class="relative flex flex-col items-center w-full md:w-[calc(100vw-14rem)] xl:w-[calc(100vw-16rem)] h-screen overflow-hidden right-body">
-      <div class="h-full w-full rounded-[inherit] flex flex-col">
+      <div class="h-full w-full rounded-[inherit] flex flex-col flex-auto">
         <div
           class="flex flex-col justify-center items-center relative top-0 bg-white z-10 md:z-0">
           <div

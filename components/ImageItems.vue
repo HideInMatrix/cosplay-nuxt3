@@ -4,21 +4,12 @@
     v-for="(item, index) in cosplays"
     :to="`/cosplay/${item.id}`"
     :key="index">
-    <USkeleton
-      class="object-cover transition-all aspect-[3/4] rounded-md w-full h-full"
-      v-if="!item.onload" />
     <NuxtImg
       quality="60"
       format="webp"
-      class="w-249px h-332px object-cover transition-all aspect-[3/4] rounded-md"
+      class="w-249px h-332px object-cover transition-all aspect-[3/4] rounded-md bg-gray-100"
       :src="item.cover"
       loading="lazy"
-      v-show="item.onload"
-      @load="
-        () => {
-          item.onload = true;
-        }
-      "
       alt="" />
     <div class="space-y-1 text-md">
       <h3 class="font-medium leading-none truncate pr-9">

@@ -2,6 +2,7 @@
   <div
     class="app-wrapper relative flex flex-col items-center w-full h-screen overflow-hidden">
     <NuxtLayout>
+      <NuxtLoadingIndicator />
       <NuxtPage keepalive />
     </NuxtLayout>
   </div>

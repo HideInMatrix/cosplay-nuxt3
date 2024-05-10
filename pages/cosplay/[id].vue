@@ -21,25 +21,15 @@
           <ClientOnly>
             <NuxtLink
               data-fancybox="gallery"
-              class="w-249px h-332px overflow-hidden"
+              class="overflow-hidden"
               :href="item.src"
               v-for="item in temImages">
-              <USkeleton
-                class="object-cover transition-all aspect-[3/4] rounded-md w-full h-full"
-                v-if="!item.onload" />
               <NuxtImg
                 quality="60"
-                class="w-full h-full object-cover transition-all hover:scale-105 aspect-[3/4] rounded-md"
+                class="w-249px h-332px object-cover transition-all hover:scale-105 aspect-[3/4] rounded-md bg-gray-100"
                 :src="item.src"
                 format="webp"
-                loading="lazy"
-                v-show="item.onload"
-                @load="
-                  () => {
-                    item.onload = true;
-                  }
-                "
-                alt="cos image" />
+                loading="lazy" />
             </NuxtLink>
           </ClientOnly>
         </div>
@@ -78,11 +68,7 @@ import { fetchCoseplaysByTagId, cosplays } from "~/hooks/getCosplaysByTagId";
 const route = useRoute();
 let cosplayer = ref<Cosplay | null>();
 const images = ref<{ src: string; onload: boolean }[]>([]);
-let temImages = ref<{ src: string; onload: boolean }[]>(
-  Array(12)
-    .fill(null)
-    .map(() => ({ src: "", onload: false }))
-);
+let temImages = ref<{ src: string; onload: boolean }[]>([]);
 let loadedCount = ref(12);
 let loadBtnFlag = ref(true);
 const extractImageSources = (markdownText: string) => {

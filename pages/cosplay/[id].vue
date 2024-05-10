@@ -26,7 +26,7 @@
               <USkeleton
                 class="h-auto w-auto object-cover transition-all aspect-[3/4] rounded-md absolute top-0 left-0"
                 v-if="!item.onload" />
-              <NuxtImg
+              <img
                 quality="60"
                 class="h-auto w-auto object-cover transition-all hover:scale-105 aspect-[3/4] rounded-md"
                 :src="item.src"
@@ -37,7 +37,7 @@
                     item.onload = true;
                   }
                 "
-                alt="" />
+                alt="cos image" />
             </NuxtLink>
           </div>
         </ClientOnly>

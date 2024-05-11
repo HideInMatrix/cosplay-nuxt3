@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import LeftMenuWrapper from "~/components/LeftMenuWrapper.vue";
-import { toLogin } from "~/hooks/toLogin";
+// import { toLogin } from "~/hooks/toLogin";
 let isOpen = ref(false);
 </script>
 <style scoped lang="scss">

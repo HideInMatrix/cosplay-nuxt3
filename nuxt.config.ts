@@ -41,6 +41,7 @@ export default defineNuxtConfig({
         test: false, // if we are using development env. the test variable will help us to show where your ads will appear
       },
     ],
+    "nuxt-csurf",
   ],
   routeRules: {
     "/": { prerender: true },
@@ -55,5 +56,20 @@ export default defineNuxtConfig({
   },
   gtag: {
     id: process.env.NUXT_PUBLIC_GTAG_ID,
+  },
+  csurf: {
+    // optional
+    https: false, // default true if in production
+    cookieKey: "", // "__Host-csrf" if https is true otherwise just "csrf"
+    cookie: {
+      // CookieSerializeOptions from unjs/cookie-es
+      path: "/",
+      httpOnly: true,
+      sameSite: "strict",
+    },
+    methodsToProtect: ["POST", "PUT", "PATCH"], // the request methods we want CSRF protection for
+    encryptSecret: "bFftmcmNekEsKhBkEeo7GmnLoqsBKdW0", // a 32 bits secret
+    encryptAlgorithm: "AES-CBC", // by default 'aes-256-cbc' (node), 'AES-CBC' (serverless)
+    addCsrfTokenToEventCtx: true, // default false, to run useCsrfFetch on server set it to true
   },
 });

@@ -1,21 +1,14 @@
 <template>
   <div
     class="app-wrapper relative flex flex-col items-center w-full h-screen overflow-hidden">
+    <NuxtLoadingIndicator />
     <NuxtLayout>
-      <NuxtLoadingIndicator />
       <NuxtPage keepalive />
     </NuxtLayout>
   </div>
 </template>
 
-<script setup lang="ts">
-// definePageMeta({
-//   key: (route) => route.fullPath,
-//   transition: {
-//     name: "page",
-//   },
-// });
-</script>
+<script setup lang="ts"></script>
 
 <style lang="scss">
 @import url("~/public/css/base.css");

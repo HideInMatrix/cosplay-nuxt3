@@ -22,7 +22,7 @@ const links = [
   {
     label: "Cosplay",
     icon: "i-flat-color-icons-camera",
-    to: "/cosplay/",
+    to: "/cosplay?page=1",
   },
   {
     label: "Cosers",

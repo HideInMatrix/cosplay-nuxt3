@@ -18,7 +18,7 @@ export default defineEventHandler(
       .select(`id,title,tags(id,name),cover,creation_date`, {
         count: "exact",
       })
-      .order("id", { ascending: false })
+      .order("id", { ascending: true })
       .range(start, end);
 
     if (error) {

@@ -2,30 +2,48 @@
   <div class="flex justify-center items-center flex-col h-full">
     <ul
       class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-4 py-3 overflow-auto flex-auto h-full w-full">
-      <ImageItems :cosplays="cosplays"></ImageItems>
+      <ImageItems :cosplays="resp?.data || []"></ImageItems>
     </ul>
     <UPagination
       class="py-8"
       size="md"
       :page-count="count"
-      :total="total"
+      :total="resp?.total"
       v-model="page" />
   </div>
 </template>
 
 <script setup lang="ts">
 import ImageItems from "~/components/ImageItems.vue";
-import { fetchCoseplays, cosplays, total } from "~/hooks/getCosplays";
 
 let page = ref(1);
-let count = ref(30);
+let count = 30;
 
-watch([page, count], async () => {
-  cosplays.value = []; // 可设置为默认值
-  fetchCoseplays({ page: page.value, count: count.value });
+const {
+  data: resp,
+  pending,
+  error,
+  refresh,
+} = await useAsyncData("cosplays", () => {
+  return $fetch("/api/cosplays/list", {
+    params: {
+      page: page.value,
+      count: count,
+    },
+  });
 });
-onBeforeMount(async () => {
-  fetchCoseplays({});
-});
+// 如果需要，你也可以在这里处理错误
+if (error.value) {
+  // 处理错误
+  throw createError({ statusCode: 500, statusMessage: error.value.message });
+}
+
+watch(
+  () => page.value,
+  () => {
+    // router.push({ path: "/cosplay", query: { page: page.value } });
+    refresh();
+  }
+);
 </script>
 <style scoped lang="scss"></style>

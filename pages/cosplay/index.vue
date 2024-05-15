@@ -24,7 +24,7 @@ const {
   pending,
   error,
   refresh,
-} = await useAsyncData("cosplays", () => {
+} = useAsyncData("cosplays", () => {
   return $fetch("/api/cosplays/list", {
     params: {
       page: page.value,
@@ -41,7 +41,6 @@ if (error.value) {
 watch(
   () => page.value,
   () => {
-    // router.push({ path: "/cosplay", query: { page: page.value } });
     refresh();
   }
 );

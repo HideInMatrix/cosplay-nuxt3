@@ -73,3 +73,6 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## cosplay分享网站
+由于nuxt3的文档不是很详细，目前项目正在用nextjs重构
